@@ -237,12 +237,18 @@ and real payment integrations. All are reasonable next steps but beyond the brie
 
 ## 5. AI usage disclosure
 
-> _Edit this section to describe honestly how you used AI tools._
+I used **Claude Code (Anthropic)** as a pair-programming assistant throughout this assessment.
 
-I used **Claude Code (Anthropic)** as a pair-programming assistant during this assessment. Specifically:
+- **Design:** I set the stack and the constraints (integer money, a derived balance, a database-level
+  UNIQUE on payment references, one transaction for check-then-insert, a separate service layer).
+  Claude proposed the schema and folder layout for me to approve.
+- **Code and tests:** Claude wrote the code (models, services, routes, error handling) and the pytest
+  suite, including the three required scenarios and a concurrency test.
+- **Review and fixes:** I asked Claude to review the API against this brief. It found and confirmed six
+  defects, e.g. blank payment references were accepted and very large amounts caused a 500 error.
+  Claude fixed them and added regression tests.
+- **Docs and tooling:** Claude wrote this README, the fictional seed data, and a script that captured
+  the screenshots in `docs/screenshots/` from the running API. It also set up the Git repository.
 
-- _e.g. Discussing the database schema and the choice to derive the balance instead of storing it._
-- _e.g. Generating the first draft of the services, routes and tests, which I then reviewed, ran and adjusted._
-- _e.g. Producing the screenshots in `docs/screenshots/` and drafting this README._
-
-I reviewed every file, ran the tests myself, and can explain how each business rule is enforced.
+I reviewed the code, ran the application and the tests myself, and can explain how the outstanding
+balance is calculated, how each business rule is enforced, and the trade-offs above.
